@@ -1,0 +1,47 @@
+name: Check and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that local files referenced by index.html exist
+        run: |
+          missing=0
+          for f in $(grep -oE '(href|src)="[^"#:]+"' index.html | sed -E 's/^(href|src)="//; s/"$//' | sort -u); do
+            if [ ! -e "$f" ]; then echo "Missing file: $f"; missing=1; fi
+          done
+          exit $missing
+      - name: Check JavaScript syntax
+        run: node --check app.js
+
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
