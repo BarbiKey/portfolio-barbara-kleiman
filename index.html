@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Barbara Kleiman, UX/UI &amp; Product Designer</title>
-<meta name="description" content="Barbara Kleiman designs enterprise interfaces and ships them as code: role architecture, design systems, and coded prototypes for OneMeta's real-time AI translation platform.">
+<meta name="description" content="Barbara Kleiman designs enterprise interfaces and ships them as code: role architecture, design systems, and coded prototypes for an enterprise real-time AI translation platform.">
 <meta name="author" content="Barbara Kleiman">
 <meta property="og:title" content="Barbara Kleiman, UX/UI &amp; Product Designer">
 <meta property="og:description" content="Product design that ships as code. Case studies on role architecture, design systems, and coded prototypes.">
@@ -31,9 +31,9 @@
 </header>
 
 <nav class="side-index" id="sideIndex">
-  <a class="item" data-target="case-verbum-local"><span class="lbl">Verbum Local</span><span class="dot"></span></a>
-  <a class="item" data-target="case-verbum-call"><span class="lbl">Verbum Call</span><span class="dot"></span></a>
-  <a class="item" data-target="verbum-family"><span class="lbl">Platform family</span><span class="dot"></span></a>
+  <a class="item" data-target="case-admin-platform"><span class="lbl">Admin Platform</span><span class="dot"></span></a>
+  <a class="item" data-target="case-call-platform"><span class="lbl">Call Platform</span><span class="dot"></span></a>
+  <a class="item" data-target="platform-family"><span class="lbl">Platform family</span><span class="dot"></span></a>
   <a class="item" data-target="personal-projects"><span class="lbl">Personal projects</span><span class="dot"></span></a>
   <a class="item" data-target="about"><span class="lbl">About</span><span class="dot"></span></a>
   <a class="item" data-target="contact"><span class="lbl">Contact</span><span class="dot"></span></a>
@@ -62,20 +62,20 @@
     <div class="section-label mono">selected work</div>
 
     <div class="overview-grid">
-      <a class="overview-card" data-target="case-verbum-local" href="#case-verbum-local">
-        <span class="oc-name display">Verbum Local</span>
+      <a class="overview-card" data-target="case-admin-platform" href="#case-admin-platform">
+        <span class="oc-name display">Admin Platform</span>
         <span class="oc-skill">Enterprise UX &amp; design-to-code systems</span>
         <p class="oc-desc">Role architecture, HIPAA-aware tooling, and 26 merged PRs into the real codebase.</p>
       </a>
-      <a class="overview-card" data-target="case-verbum-call" href="#case-verbum-call">
-        <span class="oc-name display">Verbum Call</span>
+      <a class="overview-card" data-target="case-call-platform" href="#case-call-platform">
+        <span class="oc-name display">Call Platform</span>
         <span class="oc-skill">Live monitoring &amp; safety-critical UX</span>
-        <p class="oc-desc">A live telemetry console and a real-time PII verification loop, both designed and coded.</p>
+        <p class="oc-desc">A live monitoring console and a real-time PII verification loop, both designed and coded.</p>
       </a>
-      <a class="overview-card" data-target="verbum-family" href="#verbum-family">
-        <span class="oc-name display">Verbum platform</span>
+      <a class="overview-card" data-target="platform-family" href="#platform-family">
+        <span class="oc-name display">The wider platform</span>
         <span class="oc-skill">Multi-product design systems at scale</span>
-        <p class="oc-desc">SDK, OnSite, and Agentis, three more products across OneMeta's translation platform.</p>
+        <p class="oc-desc">A developer SDK, live events, and agent assist, three more products across the same translation platform.</p>
       </a>
       <a class="overview-card" data-target="personal-projects" href="#personal-projects">
         <span class="oc-name display">Personal projects</span>
@@ -84,8 +84,8 @@
       </a>
     </div>
 
-    <!-- CASE: VERBUM LOCAL -->
-    <article class="case" id="case-verbum-local">
+    <!-- CASE: ADMIN PLATFORM -->
+    <article class="case" id="case-admin-platform">
       <div class="curve-col">
         <svg width="42" height="300" viewBox="0 0 42 300" fill="none">
           <path class="curve-path" d="M21 10 C 40 50, 2 85, 21 125 C 38 155, 4 180, 21 215 C 36 240, 6 265, 21 290" stroke="var(--line)" stroke-width="1.4"/>
@@ -99,7 +99,7 @@
       <div class="body">
         <div class="meta-row"><span><b>Role</b> Product Design + Design Ops</span><span><b>Stack</b> Figma, React, TypeScript</span><span><b>Status</b> In production</span></div>
         <h2 class="display">A role system for a translation platform, designed and built.</h2>
-        <p class="kicker"><strong>Verbum Local</strong> is OneMeta's admin platform for real-time AI translation in contact centers, used by teams running on Genesys Cloud and NICE CXone. Four roles, three tenant levels, and a lot of room to get permissions, and protected call data, wrong.</p>
+        <p class="kicker"><strong>Admin Platform</strong> is the admin console of an enterprise real-time AI translation product for contact centers, used by teams running on major CCaaS platforms. Four roles, three tenant levels, and a lot of room to get permissions, and protected call data, wrong.</p>
 
         <div class="stat-row">
           <div class="stat"><span class="num display">26</span><span class="lbl">PRs merged, real shipped code</span></div>
@@ -128,12 +128,12 @@
           </div>
           <div class="mini-item">
             <div class="mini-head" onclick="toggleMini('mi-local-2', this)"><h3>From prototype to merged code</h3><span class="plus mono">+</span></div>
-            <div class="mini-body" id="mi-local-2"><div class="mini-body-inner"><p>This isn't a standalone mockup. It's 26 of my PRs merged into the real shared codebase, reviewed and merged alongside OneMeta's engineering team, under the same rules that gate every production change: design-token discipline, typecheck gates, no untouched production pages. It lives on a parallel redesign track rather than having replaced production yet, but it was built, reviewed, and shipped the way real product code is.</p></div></div>
+            <div class="mini-body" id="mi-local-2"><div class="mini-body-inner"><p>This isn't a standalone mockup. It's 26 of my PRs merged into the real shared codebase, reviewed and merged by the engineering team. It lives on a parallel redesign track rather than having replaced production yet, but it was built, reviewed, and shipped the way real product code is.</p></div></div>
           </div>
           <div class="mini-item">
             <div class="mini-head" onclick="toggleMini('mi-local-3', this)"><h3>How the tenant hierarchy works</h3><span class="plus mono">+</span></div>
             <div class="mini-body" id="mi-local-3"><div class="mini-body-inner">
-              <div class="diagram" role="img" aria-label="Tenant hierarchy: OneMeta at level zero, Tenant at level one, Organization at level two, with four roles spanning levels one and two.">
+              <div class="diagram" role="img" aria-label="Tenant hierarchy: Platform at level zero, Tenant at level one, Organization at level two, with four roles spanning levels one and two.">
                 <svg viewBox="0 0 760 180" width="100%" height="180">
                   <defs>
                     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -144,7 +144,7 @@
                   <line x1="410" y1="90" x2="600" y2="90" stroke="var(--line)" stroke-width="1.5" marker-end="url(#arrow)"/>
                   <rect x="10" y="55" width="100" height="70" rx="12" fill="var(--panel)" stroke="var(--line)"/>
                   <text x="60" y="84" text-anchor="middle" fill="var(--ink-soft)" font-family="IBM Plex Mono" font-size="10">level 0</text>
-                  <text x="60" y="102" text-anchor="middle" fill="var(--ink)" font-family="Work Sans" font-size="13">OneMeta</text>
+                  <text x="60" y="102" text-anchor="middle" fill="var(--ink)" font-family="Work Sans" font-size="13">Platform</text>
                   <rect x="310" y="40" width="100" height="100" rx="12" fill="var(--blob)" stroke="var(--shout)"/>
                   <text x="360" y="72" text-anchor="middle" fill="var(--shout)" font-family="IBM Plex Mono" font-size="10">level 1</text>
                   <text x="360" y="92" text-anchor="middle" fill="var(--ink)" font-family="Work Sans" font-size="13">Tenant</text>
@@ -165,8 +165,8 @@
       </div>
     </article>
 
-    <!-- CASE: VERBUM CALL -->
-    <article class="case" id="case-verbum-call">
+    <!-- CASE: CALL PLATFORM -->
+    <article class="case" id="case-call-platform">
       <div class="curve-col">
         <svg width="42" height="260" viewBox="0 0 42 260" fill="none">
           <path class="curve-path" d="M21 10 C 40 45, 2 75, 21 110 C 38 140, 4 165, 21 195 C 34 215, 8 235, 21 250" stroke="var(--line)" stroke-width="1.4"/>
@@ -174,36 +174,36 @@
           <circle cx="21" cy="10" r="4" fill="var(--shout)"/><circle cx="21" cy="110" r="4" fill="var(--ink-soft)"/><circle cx="21" cy="250" r="4" fill="var(--shout)"/>
         </svg>
         <div class="vpoint" style="top:0"><div class="num mono">v2.0</div><div class="lbl">Scope</div></div>
-        <div class="vpoint" style="top:98px"><div class="num mono">v2.2</div><div class="lbl">Telemetry</div></div>
+        <div class="vpoint" style="top:98px"><div class="num mono">v2.2</div><div class="lbl">Monitoring</div></div>
         <div class="vpoint" style="top:236px"><div class="num mono">v2.4</div><div class="lbl">Shipped</div></div>
       </div>
       <div class="body">
         <div class="meta-row"><span><b>Role</b> Product Design + UX Engineering</span><span><b>Stack</b> Figma, React, TypeScript</span><span><b>Status</b> Coded prototype, live</span></div>
         <h2 class="display">Live monitoring and a safety-critical confirmation loop, both designed and coded.</h2>
-        <p class="kicker"><strong>Verbum Call</strong> is OneMeta's contact-center call platform. Two problems inside it needed more than a Figma file to prove they worked: a supervisor's live view into call health, and a real-time safeguard against an AI interpreter mishearing a caller's address.</p>
+        <p class="kicker"><strong>Call Platform</strong> is the contact-center call product of that same translation platform. Two problems inside it needed more than a Figma file to prove they worked: a supervisor's live view into call health, and a real-time safeguard against an AI interpreter mishearing a caller's address.</p>
 
         <div class="stat-row">
-          <div class="stat"><span class="num display">8+</span><span class="lbl">commits to the Telemetry Console</span></div>
+          <div class="stat"><span class="num display">8+</span><span class="lbl">commits to the Monitoring Console</span></div>
           <div class="stat"><span class="num display">3</span><span class="lbl">weeks, console to live</span></div>
         </div>
 
         <div class="block">
           <h3>The platform underneath</h3>
-          <p>I designed the full call-control surface this case sits on: the dashboard, agent and phone-number management, call-control pages, role definitions, and the live transcript screen agents see during a call, as the foundation the Telemetry Console and Hairpin work below were built into.</p>
+          <p>I designed the full call-control surface this case sits on: the dashboard, agent and phone-number management, call-control pages, role definitions, and the live transcript screen agents see during a call, as the foundation the Monitoring Console and agent-view work below were built into.</p>
         </div>
         <div class="block">
-          <h3>Telemetry Console</h3>
-          <p>Supervisors had no single place to see call health as it happened. I designed and built the Telemetry Console end to end: live call monitoring, quality trends, health signals, search and filters, across 8+ commits over three weeks. I set up the project's Cloudflare deploy pipeline myself, so every push would deploy automatically.</p>
+          <h3>Monitoring Console</h3>
+          <p>Supervisors had no single place to see call health as it happened. I designed and built the Monitoring Console end to end: live call monitoring, quality trends, health signals, search and filters, across 8+ commits over three weeks. I set up the project's Cloudflare deploy pipeline myself, so every push would deploy automatically.</p>
         </div>
 
         <div class="mini-accordion">
           <div class="mini-item">
             <div class="mini-head" onclick="toggleMini('mi-call-1', this)"><h3>The problem: an interpreter that has to be sure</h3><span class="plus mono">+</span></div>
-            <div class="mini-body" id="mi-call-1"><div class="mini-body-inner"><p>In Hairpin, Verbum Call's real-time agent view, an AI interpreter can mishear a caller's address or phone number mid-call. Passing that through unverified is a real risk, more so on a 911 or other time-critical line. Asking the caller to repeat it wasn't enough on its own: the fix needed a confirmation flow an agent could trigger instantly without derailing the call.</p></div></div>
+            <div class="mini-body" id="mi-call-1"><div class="mini-body-inner"><p>In the agent view, the real-time screen of the Call Platform, an AI interpreter can mishear a caller's address or phone number mid-call. Passing that through unverified is a real risk, more so on a 911 or other time-critical line. Asking the caller to repeat it wasn't enough on its own: the fix needed a confirmation flow an agent could trigger instantly without derailing the call.</p></div></div>
           </div>
           <div class="mini-item">
             <div class="mini-head" onclick="toggleMini('mi-call-2', this)"><h3>Active PII Verification</h3><span class="plus mono">+</span></div>
-            <div class="mini-body" id="mi-call-2"><div class="mini-body-inner"><p>I designed and coded the confirmation loop myself, reusing Hairpin's real production components rather than a disconnected mockup: an agent-initiated trigger (a side-panel button or a <code>/verify address</code> command), a live confirm/cancel flow, and two different attempt caps depending on urgency, four attempts for enterprise calls, two for time-critical ones. I scoped what wasn't ready yet just as deliberately: no fabricated confidence score, no auto-trigger until Engineering confirms the latency it would need.</p></div></div>
+            <div class="mini-body" id="mi-call-2"><div class="mini-body-inner"><p>I designed and coded the confirmation loop myself, reusing the agent view's real production components rather than a disconnected mockup: an agent-initiated trigger (a side-panel button or a <code>/verify address</code> command), a live confirm/cancel flow, and two different attempt caps depending on urgency, four attempts for enterprise calls, two for time-critical ones. I scoped what wasn't ready yet just as deliberately: no fabricated confidence score, no auto-trigger until Engineering confirms the latency it would need.</p></div></div>
           </div>
           <div class="mini-item">
             <div class="mini-head" onclick="toggleMini('mi-call-3', this)"><h3>Language re-detect, shipped</h3><span class="plus mono">+</span></div>
@@ -217,34 +217,34 @@
       </div>
     </article>
 
-    <!-- VERBUM PLATFORM FAMILY -->
-    <div class="section-label mono" id="verbum-family" style="margin-top:8px">also part of the platform</div>
-    <p class="subsection-intro">Earlier and parallel work on OneMeta's other Verbum products, designed in Figma, before documentation and handoff practices were as formal as they are on Verbum Local and Verbum Call today.</p>
+    <!-- PLATFORM FAMILY -->
+    <div class="section-label mono" id="platform-family" style="margin-top:8px">also part of the platform</div>
+    <p class="subsection-intro">Earlier and parallel work on the platform's other products, designed in Figma, before documentation and handoff practices were as formal as they are on the Admin and Call platforms today.</p>
 
     <div class="family-grid">
       <div class="family-card">
-        <h4 class="display">Verbum SDK</h4>
+        <h4 class="display">Developer SDK</h4>
         <span class="fc-role">Figma, portal design</span>
         <p>Designed the SDK management portal: API key creation, user management, and usage metrics. A developer-facing surface, so the UX had to read as infrastructure, not consumer software.</p>
         <div class="taglist"><span class="tag">Figma</span><span class="tag">Design Ops</span><span class="tag">Developer-facing UX</span></div>
       </div>
       <div class="family-card">
-        <h4 class="display">Verbum OnSite</h4>
+        <h4 class="display">Live Events</h4>
         <span class="fc-role">Figma, end-to-end flows</span>
         <p>A product for live, on-site event translation and transcription. Designed the full multiplatform experience: attendees joining by scanning a QR on their phone, what gets cast to a shared screen, and the organizer flow for creating events and inviting people.</p>
         <div class="taglist"><span class="tag">Figma</span><span class="tag">Design Ops</span><span class="tag">Multiplatform flow</span></div>
       </div>
       <div class="family-card">
-        <h4 class="display">Agentis</h4>
+        <h4 class="display">Agent Assist</h4>
         <span class="fc-role">Figma, flows, roles &amp; specs</span>
-        <p>The same core idea as Verbum Local, live transcript, translation, and preset replies for agents, designed instead to embed directly into Genesys, NICE, and Five9. Covers flows, role matrices, use cases, alerts, login, and per-platform install guides, plus a stepper for requesting and training custom language models.</p>
+        <p>The same core idea as the Admin Platform, live transcript, translation, and preset replies for agents, designed instead to embed directly into major CCaaS platforms. Covers flows, role matrices, use cases, alerts, login, and per-platform install guides, plus a stepper for requesting and training custom language models.</p>
         <div class="taglist"><span class="tag">Figma</span><span class="tag">RBAC &amp; permissions</span><span class="tag">Design Ops</span><span class="tag">Multi-CCaaS integration</span></div>
       </div>
     </div>
 
     <!-- PERSONAL PROJECTS -->
     <div class="section-label mono" id="personal-projects">personal projects</div>
-    <p class="subsection-intro">Outside of OneMeta, these are mine end to end: the 0-to-1 problem-solving, and the place I keep testing new tools and skills, from coded prototyping to Claude Design.</p>
+    <p class="subsection-intro">Outside of my contract work, these are mine end to end: the 0-to-1 problem-solving, and the place I keep testing new tools and skills, from coded prototyping to Claude Design.</p>
 
     <article class="case">
       <div class="curve-col">
@@ -300,7 +300,7 @@
   <section id="about" class="about">
     <div class="section-label mono">about</div>
     <h2 class="display" style="font-size:clamp(1.5rem,3vw,1.9rem);margin-bottom:18px">From Design Ops into the code.</h2>
-    <p>I'm a <strong>UX/UI and Product Designer</strong> based in Buenos Aires. My most recent work has been on <strong>OneMeta's</strong> real-time AI translation platforms. My background started in project management across graphic design, 3D, and animation before I specialized in UX/UI, which is probably why I care as much about how work gets organized and handed off as about how it looks.</p>
+    <p>I'm a <strong>UX/UI and Product Designer</strong> based in Buenos Aires. From 2022 to 2026, as a contractor, I worked on <strong>enterprise real-time AI translation platforms</strong> for contact centers. My background started in project management across graphic design, 3D, and animation before I specialized in UX/UI, which is probably why I care as much about how work gets organized and handed off as about how it looks.</p>
     <p>Most of my day is split between interface design, role and permission architecture, UX copy, and the documentation that makes a product legible to the people building it: specs, use cases, dev notes. Lately that documentation has started turning into working prototypes I build myself, a direction I'm pushing further through a current <strong>UX Engineering workshop with UX Unicorn</strong>.</p>
   </section>
 
