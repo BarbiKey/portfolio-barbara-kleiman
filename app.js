@@ -23,9 +23,13 @@ function toggleMini(id, headEl){
   var el = document.getElementById(id);
   var opening = !el.classList.contains('open');
   el.classList.toggle('open');
-  var plus = headEl.querySelector('.plus');
-  if (plus) plus.textContent = opening ? '−' : '+';
+  headEl.setAttribute('aria-expanded', opening ? 'true' : 'false');
 }
+document.querySelectorAll('.mini-head').forEach(function(h){
+  h.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); h.click(); }
+  });
+});
 
 /* scrollspy for the floating side index */
 (function(){

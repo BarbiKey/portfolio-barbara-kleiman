@@ -127,10 +127,18 @@ header.nav{
 .mini-item{border-bottom:1px solid var(--line)}
 .mini-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 2px;cursor:pointer}
 .mini-head h3{font-size:.95rem;margin:0}
-.mini-head .plus{font-family:'IBM Plex Mono',monospace;color:var(--shout);font-size:.78rem;flex:none}
-.mini-body{max-height:0;overflow:hidden;transition:max-height .25s ease}
-.mini-body.open{max-height:600px}
-.mini-body-inner{padding:0 2px 16px}
+/* the "+" glyph is drawn with two bars so the open state can turn it into a "−" with transform only */
+.mini-head .plus{position:relative;width:10px;height:10px;flex:none;font-size:0;color:transparent}
+.mini-head .plus::before,.mini-head .plus::after{content:"";position:absolute;background:var(--shout);border-radius:1px}
+.mini-head .plus::before{left:0;right:0;top:4.5px;height:1px}
+.mini-head .plus::after{top:0;bottom:0;left:4.5px;width:1px;transition:transform .2s cubic-bezier(.23,1,.32,1)}
+.mini-head[aria-expanded="true"] .plus::after{transform:scaleY(0)}
+/* grid 0fr -> 1fr animates to the content's real height (authorized exception to transform/opacity) */
+.mini-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s cubic-bezier(.23,1,.32,1)}
+.mini-body.open{grid-template-rows:1fr}
+.mini-body-inner{min-height:0;overflow:hidden;padding:0 2px;visibility:hidden;transition:visibility 0s linear .25s}
+.mini-body.open .mini-body-inner{visibility:visible;transition-delay:0s}
+.mini-body-inner::after{content:"";display:block;height:16px}
 .mini-body-inner p{font-size:.92rem;color:var(--ink-soft);line-height:1.65;max-width:60ch;margin:0}
 
 .stat-row{display:flex;gap:34px;flex-wrap:wrap;margin:4px 0 26px}

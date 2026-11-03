@@ -123,15 +123,15 @@
 
         <div class="mini-accordion">
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-admin-1', this)"><h3>Supervisor &amp; Super Admin</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-admin-1" onclick="toggleMini('mi-admin-1', this)"><h3>Supervisor &amp; Super Admin</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-admin-1"><div class="mini-body-inner"><p>On the other side, Supervisors and Super Admins needed full operational control: reviewing sessions, managing preset replies, teams, languages, settings, and custom model assignment, without that control ever exposing protected call content. I designed and built an audit log viewer, a HIPAA toggle, and a retention policy selector as first-class parts of each portal, not bolted on after the fact.</p></div></div>
           </div>
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-admin-2', this)"><h3>From prototype to merged code</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-admin-2" onclick="toggleMini('mi-admin-2', this)"><h3>From prototype to merged code</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-admin-2"><div class="mini-body-inner"><p>This isn't a standalone mockup. It's 26 of my PRs merged into the real shared codebase, reviewed and merged by the engineering team. It lives on a parallel redesign track rather than having replaced production yet, but it was built, reviewed, and shipped the way real product code is.</p></div></div>
           </div>
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-admin-3', this)"><h3>How the tenant hierarchy works</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-admin-3" onclick="toggleMini('mi-admin-3', this)"><h3>How the tenant hierarchy works</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-admin-3"><div class="mini-body-inner">
               <div class="diagram" role="img" aria-label="Tenant hierarchy: Platform at level zero, Tenant at level one, Organization at level two, with four roles spanning levels one and two.">
                 <svg viewBox="0 0 760 180" width="100%" height="180">
@@ -198,15 +198,15 @@
 
         <div class="mini-accordion">
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-call-1', this)"><h3>The problem: an interpreter that has to be sure</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-call-1" onclick="toggleMini('mi-call-1', this)"><h3>The problem: an interpreter that has to be sure</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-call-1"><div class="mini-body-inner"><p>In the agent view, the real-time screen of the Call Platform, an AI interpreter can mishear a caller's address or phone number mid-call. Passing that through unverified is a real risk, more so on a 911 or other time-critical line. Asking the caller to repeat it wasn't enough on its own: the fix needed a confirmation flow an agent could trigger instantly without derailing the call.</p></div></div>
           </div>
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-call-2', this)"><h3>Active PII Verification</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-call-2" onclick="toggleMini('mi-call-2', this)"><h3>Active PII Verification</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-call-2"><div class="mini-body-inner"><p>I designed and coded the confirmation loop myself, reusing the agent view's real production components rather than a disconnected mockup: an agent-initiated trigger (a side-panel button or a <code>/verify address</code> command), a live confirm/cancel flow, and two different attempt caps depending on urgency, four attempts for enterprise calls, two for time-critical ones. I scoped what wasn't ready yet just as deliberately: no fabricated confidence score, no auto-trigger until Engineering confirms the latency it would need.</p></div></div>
           </div>
           <div class="mini-item">
-            <div class="mini-head" onclick="toggleMini('mi-call-3', this)"><h3>Language re-detect, shipped</h3><span class="plus mono">+</span></div>
+            <div class="mini-head" role="button" tabindex="0" aria-expanded="false" aria-controls="mi-call-3" onclick="toggleMini('mi-call-3', this)"><h3>Language re-detect, shipped</h3><span class="plus mono" aria-hidden="true">+</span></div>
             <div class="mini-body" id="mi-call-3"><div class="mini-body-inner"><p>Inside the same prototype I designed and built the language re-detect flow: trigger, status pill, confirm/cancel, tab lockout for a wrong-language call. The engineering team built the production version directly from this interaction spec.</p></div></div>
           </div>
         </div>
