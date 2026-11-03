@@ -36,9 +36,10 @@ img{max-width:100%}
 /* background blob, hero only */
 .blob{position:absolute;top:-170px;right:-200px;width:560px;height:560px;border-radius:62% 38% 55% 45% / 48% 55% 45% 52%;background:var(--blob);opacity:.55;z-index:0;animation:blobDrift 11s ease-in-out infinite}
 @keyframes blobDrift{
-  0%,100%{border-radius:62% 38% 55% 45% / 48% 55% 45% 52%;transform:rotate(0deg) scale(1)}
-  50%{border-radius:48% 52% 42% 58% / 58% 42% 62% 38%;transform:rotate(10deg) scale(1.05)}
+  0%,100%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(10deg) scale(1.05)}
 }
+.blob.paused{animation-play-state:paused}
 .star{position:fixed;width:2px;height:2px;background:var(--shout);border-radius:50%;opacity:0;z-index:2;pointer-events:none;box-shadow:0 0 6px 1px var(--shout)}
 .star.fly{animation:shoot 1.6s linear forwards}
 @keyframes shoot{

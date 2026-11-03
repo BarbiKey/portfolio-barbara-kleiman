@@ -111,6 +111,15 @@ document.querySelectorAll('.tag').forEach(function(t){
   }
 })();
 
+/* hero blob: pause the drift while it is out of the viewport */
+(function(){
+  var blob = document.querySelector('.blob');
+  if (!blob || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(entries){
+    blob.classList.toggle('paused', !entries[entries.length - 1].isIntersecting);
+  }).observe(blob);
+})();
+
 /* shooting star: a rare, quiet flourish behind the hero blob, off by default for reduced motion */
 (function(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
