@@ -86,11 +86,18 @@ document.querySelectorAll('.tag').forEach(function(t){
   t.addEventListener('click', function(){ applyTagFilter(t.textContent); });
 });
 
-/* version curve "paints" (v1.0 -> v1.4) as you scroll through each case */
+/* version curve "paints" (v1.0 -> v1.4) as you scroll through each case.
+   Scroll work is rAF-throttled and only runs where the curve is visible and motion is allowed. */
 (function(){
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fills = Array.prototype.slice.call(document.querySelectorAll('.curve-fill'));
-  var lengths = fills.map(function(p){ var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; return len; });
+  if (!fills.length || !window.matchMedia) return;
+  var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mobileMq = window.matchMedia('(max-width: 640px)'); /* .curve-col is display:none here */
+  var lengths = null, listening = false, ticking = false;
+  function init(){
+    if (lengths) return;
+    lengths = fills.map(function(p){ var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; return len; });
+  }
   function paint(){
     fills.forEach(function(p, i){
       var caseEl = p.closest('.case');
@@ -102,13 +109,34 @@ document.querySelectorAll('.tag').forEach(function(t){
       p.style.strokeDashoffset = lengths[i] * (1 - progress);
     });
   }
-  if (!reduceMotion){
-    window.addEventListener('scroll', paint, {passive:true});
-    window.addEventListener('resize', paint);
-    paint();
-  } else {
-    fills.forEach(function(p){ p.style.strokeDashoffset = 0; });
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ ticking = false; paint(); });
   }
+  function sync(){
+    var reduce = reduceMq.matches;
+    if (reduce || mobileMq.matches){
+      if (listening){
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+        listening = false;
+      }
+      if (reduce){ init(); fills.forEach(function(p){ p.style.strokeDashoffset = 0; }); }
+      return;
+    }
+    init();
+    if (!listening){
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('resize', onScroll, {passive:true});
+      listening = true;
+    }
+    paint();
+  }
+  [reduceMq, mobileMq].forEach(function(mq){
+    if (mq.addEventListener) mq.addEventListener('change', sync); else if (mq.addListener) mq.addListener(sync);
+  });
+  sync();
 })();
 
 /* hero blob: pause the drift while it is out of the viewport */

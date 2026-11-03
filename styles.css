@@ -83,12 +83,13 @@ header.nav{
 
 /* floating side index */
 .side-index{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:13px;align-items:flex-end}
-.side-index .item{display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.5;transition:opacity .15s ease;text-decoration:none}
+.side-index .item{position:relative;min-height:16px;display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.5;transition:opacity .15s ease;text-decoration:none}
 .side-index .item.active{opacity:1}
-.side-index .dot{width:6px;height:6px;border-radius:50%;background:var(--ink-soft);flex:none;transition:all .15s ease}
-.side-index .item.active .dot{background:var(--shout);width:8px;height:8px}
-.side-index .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .2s ease}
-.side-index .item:hover .lbl{max-width:140px}
+.side-index .dot{width:6px;height:6px;border-radius:50%;background:var(--ink-soft);flex:none;transition:transform .15s ease,background-color .15s ease}
+.side-index .item.active .dot{background:var(--shout);transform:scale(1.333)}
+/* label sits out of flow so it takes no space until shown; opacity + translateX only */
+.side-index .lbl{position:absolute;right:calc(100% + 8px);top:50%;margin-top:-8px;font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:16px;color:var(--ink-soft);white-space:nowrap;opacity:0;transform:translateX(6px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+.side-index .item:hover .lbl,.side-index .item:focus-visible .lbl{opacity:1;transform:translateX(0)}
 .filter-pill{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:16;display:none;align-items:center;gap:10px;background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:10px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
 .filter-pill.show{display:flex}
 .filter-pill button{all:unset;cursor:pointer;color:var(--blob);font-family:inherit}
