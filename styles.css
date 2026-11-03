@@ -30,6 +30,9 @@ img{max-width:100%}
 :focus-visible{outline:2px solid var(--shout);outline-offset:3px;border-radius:2px}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
 
+/* top nav anchors glide like the side index; reduced motion keeps the instant jump */
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+
 /* background blob, hero only */
 .blob{position:absolute;top:-170px;right:-200px;width:560px;height:560px;border-radius:62% 38% 55% 45% / 48% 55% 45% 52%;background:var(--blob);opacity:.55;z-index:0;animation:blobDrift 11s ease-in-out infinite}
 @keyframes blobDrift{

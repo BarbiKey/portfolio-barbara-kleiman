@@ -14,6 +14,11 @@ function fallbackCopy(text, done){
   }catch(e){}
 }
 
+/* read live on every call: the OS setting can change while the page is open */
+function prefersReducedMotion(){
+  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
 function toggleMini(id, headEl){
   var el = document.getElementById(id);
   var opening = !el.classList.contains('open');
@@ -40,7 +45,7 @@ function toggleMini(id, headEl){
     it.addEventListener('click', function(e){
       e.preventDefault();
       var el = document.getElementById(it.getAttribute('data-target'));
-      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      if (el) el.scrollIntoView({behavior: prefersReducedMotion() ? 'auto' : 'smooth', block:'start'});
     });
   });
   window.addEventListener('scroll', onScroll, {passive:true});
