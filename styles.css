@@ -40,13 +40,19 @@ img{max-width:100%}
   50%{transform:rotate(10deg) scale(1.05)}
 }
 .blob.paused{animation-play-state:paused}
-.star{position:fixed;width:2px;height:2px;background:var(--shout);border-radius:50%;opacity:0;z-index:2;pointer-events:none;box-shadow:0 0 6px 1px var(--shout)}
-.star.fly{animation:shoot 1.6s linear forwards}
+/* shooting star: the element only translates and fades; head glow and tail are static gradients */
+.star{position:fixed;width:0;height:0;opacity:0;z-index:2;pointer-events:none}
+.star::before{content:"";position:absolute;left:0;top:-2px;width:var(--tail,170px);height:4px;transform-origin:0 50%;transform:rotate(var(--ang,32deg));background:linear-gradient(to right,var(--shout),rgba(194,99,74,.4) 40%,transparent);clip-path:polygon(0 0,100% 42%,100% 58%,0 100%)}
+.star::after{content:"";position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,var(--shout) 0 32%,rgba(194,99,74,.4) 52%,transparent 72%)}
+.star.fly{will-change:transform,opacity;animation:shoot 1.8s cubic-bezier(.22,1,.36,1) forwards,shootFade 1.8s linear forwards}
 @keyframes shoot{
-  0%{opacity:0;transform:translate(0,0)}
-  8%{opacity:.9}
-  85%{opacity:.6}
-  100%{opacity:0;transform:translate(var(--dx,-220px),var(--dy,170px))}
+  from{transform:translate(0,0)}
+  to{transform:translate(var(--dx,-300px),var(--dy,-190px))}
+}
+@keyframes shootFade{
+  0%{opacity:0}
+  6%,25%{opacity:1}
+  100%{opacity:0}
 }
 @media (prefers-reduced-motion: reduce){.blob{animation:none}.star.fly{animation:none;display:none}}
 

@@ -158,18 +158,24 @@ document.querySelectorAll('.tag').forEach(function(t){
   var section = document.getElementById(STAR_SECTION_ID);
   if (!section || !('IntersectionObserver' in window)) return;
   function shoot(){
-    var vw = document.documentElement.clientWidth, vh = window.innerHeight, m = 16;
-    var x = vw * (0.55 + Math.random() * 0.3);
-    var y = vh * (0.08 + Math.random() * 0.17);
-    var travel = Math.min(220, x - m, (vh - m - y) * 220 / 170);
+    var vw = document.documentElement.clientWidth, vh = window.innerHeight, m = 24;
+    var ang = (28 + Math.random() * 10) * Math.PI / 180;
+    var cos = Math.cos(ang), sin = Math.sin(ang);
+    var tail = Math.min(170, vw * 0.35);
+    /* starts bottom right, travels up left; the tail trails behind toward the start */
+    var x = Math.min(vw * (0.7 + Math.random() * 0.18), vw - m - tail * cos);
+    var y = Math.min(vh * (0.62 + Math.random() * 0.18), vh - m - tail * sin);
+    var travel = Math.min(520, (x - m) / cos, (y - m) / sin);
     var star = document.createElement('div');
     star.className = 'star fly';
     star.style.left = x + 'px';
     star.style.top = y + 'px';
-    star.style.setProperty('--dx', (-travel) + 'px');
-    star.style.setProperty('--dy', (travel * 170 / 220) + 'px');
+    star.style.setProperty('--tail', tail + 'px');
+    star.style.setProperty('--ang', (ang * 180 / Math.PI) + 'deg');
+    star.style.setProperty('--dx', (-travel * cos) + 'px');
+    star.style.setProperty('--dy', (-travel * sin) + 'px');
     document.body.appendChild(star);
-    setTimeout(function(){ star.remove(); }, 1700);
+    setTimeout(function(){ star.remove(); }, 2000);
   }
   var io = new IntersectionObserver(function(entries){
     for (var i = 0; i < entries.length; i++){
