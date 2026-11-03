@@ -41,6 +41,9 @@ document.querySelectorAll('.mini-head').forEach(function(h){
     for (var i = 0; i < targets.length; i++){
       if (targets[i] && targets[i].offsetTop <= y) current = targets[i];
     }
+    /* at the bottom of the page the last section may never reach the threshold */
+    var atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    if (atBottom && targets.length) current = targets[targets.length - 1];
     items.forEach(function(it){
       it.classList.toggle('active', current && it.getAttribute('data-target') === current.id);
     });
