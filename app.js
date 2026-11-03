@@ -120,19 +120,33 @@ document.querySelectorAll('.tag').forEach(function(t){
   }).observe(blob);
 })();
 
-/* shooting star: a rare, quiet flourish behind the hero blob, off by default for reduced motion */
+/* shooting star: fires once, the first time the trigger section is 40% in view.
+   Never fires under reduced motion. The path is computed from the current viewport so it stays on screen. */
 (function(){
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var blob = document.querySelector('.blob');
-  if (!blob) return;
+  var STAR_SECTION_ID = 'about'; /* [EDITABLE] section that triggers the star */
+  var section = document.getElementById(STAR_SECTION_ID);
+  if (!section || !('IntersectionObserver' in window)) return;
   function shoot(){
-    var r = blob.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth, vh = window.innerHeight, m = 16;
+    var x = vw * (0.55 + Math.random() * 0.3);
+    var y = vh * (0.08 + Math.random() * 0.17);
+    var travel = Math.min(220, x - m, (vh - m - y) * 220 / 170);
     var star = document.createElement('div');
     star.className = 'star fly';
-    star.style.left = (r.left + r.width * (0.55 + Math.random() * 0.3)) + 'px';
-    star.style.top = (r.top + r.height * (0.08 + Math.random() * 0.12)) + 'px';
+    star.style.left = x + 'px';
+    star.style.top = y + 'px';
+    star.style.setProperty('--dx', (-travel) + 'px');
+    star.style.setProperty('--dy', (travel * 170 / 220) + 'px');
     document.body.appendChild(star);
     setTimeout(function(){ star.remove(); }, 1700);
   }
-  setTimeout(function schedule(){ shoot(); setTimeout(schedule, 14000 + Math.random() * 10000); }, 4000);
+  var io = new IntersectionObserver(function(entries){
+    for (var i = 0; i < entries.length; i++){
+      if (!entries[i].isIntersecting) continue;
+      io.unobserve(section);
+      if (!prefersReducedMotion()) shoot();
+      return;
+    }
+  }, {threshold: 0.4});
+  io.observe(section);
 })();
