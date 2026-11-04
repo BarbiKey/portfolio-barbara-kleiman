@@ -113,26 +113,33 @@ document.querySelectorAll('.tag').forEach(function(t){
 });
 
 /* version curve "paints" (v1.0 -> v1.4) as you scroll through each case.
+   Authorized exception: stroke-dashoffset is not transform/opacity/filter. It is a small SVG path,
+   driven by scroll, and the only way to draw a line progressively without a library.
    Scroll work is rAF-throttled and only runs where the curve is visible and motion is allowed. */
 (function(){
   var fills = Array.prototype.slice.call(document.querySelectorAll('.curve-fill'));
   if (!fills.length || !window.matchMedia) return;
   var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mobileMq = window.matchMedia('(max-width: 640px)'); /* .curve-col is display:none here */
-  var lengths = null, listening = false, ticking = false;
+  var lengths = null, last = [], listening = false, ticking = false;
   function init(){
     if (lengths) return;
     lengths = fills.map(function(p){ var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = len; return len; });
   }
   function paint(){
-    fills.forEach(function(p, i){
+    var vh = window.innerHeight;
+    /* read every rect first, then write, so layout is computed once */
+    var progress = fills.map(function(p){
       var caseEl = p.closest('.case');
-      if (!caseEl) return;
+      if (!caseEl) return null;
       var rect = caseEl.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var progress = (vh * 0.85 - rect.top) / (rect.height || 1);
-      progress = Math.max(0, Math.min(1, progress));
-      p.style.strokeDashoffset = lengths[i] * (1 - progress);
+      return Math.max(0, Math.min(1, (vh * 0.85 - rect.top) / (rect.height || 1)));
+    });
+    /* cases outside the viewport sit at 0 or 1; they are only written when that value changes */
+    progress.forEach(function(v, i){
+      if (v === null || v === last[i]) return;
+      last[i] = v;
+      fills[i].style.strokeDashoffset = lengths[i] * (1 - v);
     });
   }
   function onScroll(){
@@ -148,7 +155,8 @@ document.querySelectorAll('.tag').forEach(function(t){
         window.removeEventListener('resize', onScroll);
         listening = false;
       }
-      if (reduce){ init(); fills.forEach(function(p){ p.style.strokeDashoffset = 0; }); }
+      /* getTotalLength throws on a display:none SVG in some browsers: skip it on mobile */
+      if (reduce && !mobileMq.matches){ init(); fills.forEach(function(p, i){ p.style.strokeDashoffset = 0; last[i] = 1; }); }
       return;
     }
     init();
