@@ -55,8 +55,29 @@ document.querySelectorAll('.mini-head').forEach(function(h){
       if (el) el.scrollIntoView({behavior: prefersReducedMotion() ? 'auto' : 'smooth', block:'start'});
     });
   });
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  /* the index is display:none at <=860px, so no scroll work there; rAF-throttled where it shows */
+  var spyMq = window.matchMedia ? window.matchMedia('(max-width: 860px)') : null;
+  var spyTicking = false, spyListening = false;
+  function onSpyScroll(){
+    if (spyTicking) return;
+    spyTicking = true;
+    requestAnimationFrame(function(){ spyTicking = false; onScroll(); });
+  }
+  function syncSpy(){
+    var hidden = spyMq && spyMq.matches;
+    if (hidden && spyListening){
+      window.removeEventListener('scroll', onSpyScroll);
+      spyListening = false;
+    } else if (!hidden && !spyListening){
+      window.addEventListener('scroll', onSpyScroll, {passive:true});
+      spyListening = true;
+      onScroll();
+    }
+  }
+  if (spyMq){
+    if (spyMq.addEventListener) spyMq.addEventListener('change', syncSpy); else if (spyMq.addListener) spyMq.addListener(syncSpy);
+  }
+  syncSpy();
 })();
 
 /* tag filter: click a tag to dim every case/card that doesn't share it */
