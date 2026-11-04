@@ -206,7 +206,8 @@ document.querySelectorAll('.tag').forEach(function(t){
     star.style.setProperty('--dx', (-travel * cos) + 'px');
     star.style.setProperty('--dy', (-travel * sin) + 'px');
     document.body.appendChild(star);
-    setTimeout(function(){ star.remove(); }, 2000);
+    /* two animations end together (shoot, shootFade); remove() twice is harmless */
+    star.addEventListener('animationend', function(){ star.remove(); });
   }
   var io = new IntersectionObserver(function(entries){
     for (var i = 0; i < entries.length; i++){
