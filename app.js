@@ -73,7 +73,9 @@ function applyTagFilter(tagText){
     unit.classList.toggle('dimmed', tags.indexOf(norm) === -1);
   });
   document.querySelectorAll('.tag').forEach(function(t){
-    t.classList.toggle('tag-active', t.textContent.trim().toLowerCase() === norm);
+    var on = t.textContent.trim().toLowerCase() === norm;
+    t.classList.toggle('tag-active', on);
+    t.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
   var pill = document.getElementById('filterPill');
   document.getElementById('filterPillText').textContent = 'filtering by: ' + tagText.trim();
@@ -82,7 +84,7 @@ function applyTagFilter(tagText){
 function clearTagFilter(){
   activeTagFilter = null;
   getFilterUnits().forEach(function(unit){ unit.classList.remove('dimmed'); });
-  document.querySelectorAll('.tag').forEach(function(t){ t.classList.remove('tag-active'); });
+  document.querySelectorAll('.tag').forEach(function(t){ t.classList.remove('tag-active'); t.setAttribute('aria-pressed', 'false'); });
   document.getElementById('filterPill').classList.remove('show');
 }
 document.querySelectorAll('.tag').forEach(function(t){

@@ -155,7 +155,7 @@ header.nav{
 .stat .lbl{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--ink-soft)}
 
 .taglist{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--ink);background:var(--bg);padding:6px 13px;border-radius:999px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;line-height:inherit;color:var(--ink);background:var(--bg);padding:6px 13px;border:0;border-radius:999px}
 
 /* overview grid */
 .overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;position:relative;z-index:1;margin-bottom:12px}
