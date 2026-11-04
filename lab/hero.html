@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" data-variant="expressive" data-palette="clay">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Hero lab, Barbara Kleiman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500,0,0&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Palettes. Clay = current site tokens. Ladrillo and Ultramar: bg and accent given,
+   the remaining tokens (ink-soft, line, panel, blob) are derived [EDITABLE]. */
+:root,
+:root[data-palette="clay"]{
+  --bg:#f7efe6; --ink:#333333; --ink-soft:#7d7568; --line:#e5d6c6;
+  --shout:#c2634a; --panel:#f0e1d1; --blob:#f1c7a8;
+  color-scheme:light;
+}
+:root[data-palette="ladrillo"]{
+  --bg:#f2ede4; --ink:#333333; --ink-soft:#75695d; --line:#dccfc0;
+  --shout:#9c3d2b; --panel:#e9dfd0; --blob:#e3b3a3;
+}
+:root[data-palette="ultramar"]{
+  --bg:#f3f1ec; --ink:#333333; --ink-soft:#6b6a75; --line:#dcd8d0;
+  --shout:#2f45d4; --panel:#e8e7ee; --blob:#c5cdf3;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Work Sans',Arial,sans-serif; font-size:16px; line-height:1.6;
+  position:relative; overflow-x:hidden;
+  transition:background-color .3s ease, color .3s ease;
+}
+h1{margin:0}
+.display{font-family:'Fraunces',Georgia,serif;font-weight:500;font-variation-settings:'opsz' 72,'SOFT' 60,'WONK' 0;color:var(--ink)}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+::selection{background:var(--blob);color:var(--ink)}
+:focus-visible{outline:2px solid var(--shout);outline-offset:3px;border-radius:2px}
+
+/* lab toolbar */
+.lab-bar{
+  position:sticky; top:0; z-index:20;
+  display:flex; flex-wrap:wrap; gap:12px 32px; align-items:center;
+  padding:14px max(24px,env(safe-area-inset-left,24px));
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  font-size:.78rem;
+}
+.lab-bar .tag{color:var(--ink-soft);letter-spacing:.04em}
+.group{border:0;margin:0;padding:0;display:flex;align-items:center;gap:10px}
+.group legend{float:left;padding:0;margin-right:10px;color:var(--ink-soft);letter-spacing:.04em}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{
+  padding:6px 14px; cursor:pointer; color:var(--ink);
+  transition:background-color .2s ease, color .2s ease;
+}
+.seg label ~ label{border-left:1px solid var(--line)}
+.seg input:checked + label{background:var(--shout);color:var(--bg)}
+.seg input:focus-visible + label{outline:2px solid var(--shout);outline-offset:2px}
+.seg label .sw{display:inline-block;width:.7em;height:.7em;border-radius:50%;margin-right:7px;vertical-align:-.04em;border:1px solid rgba(0,0,0,.2)}
+
+/* hero */
+.shell{max-width:1120px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,24px))}
+.blob{
+  position:absolute;top:-120px;right:-200px;width:560px;height:560px;
+  border-radius:62% 38% 55% 45% / 48% 55% 45% 52%;
+  background:var(--blob);opacity:.55;z-index:0;
+  animation:blobDrift 11s ease-in-out infinite;
+}
+@keyframes blobDrift{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(10deg) scale(1.05)}}
+.hero{padding:56px 0 64px;position:relative;z-index:1}
+.eyebrow{font-size:.8rem;color:var(--shout);margin-bottom:16px;letter-spacing:.03em;display:inline-block}
+.hero h1{font-size:clamp(2.7rem,9.6vw,7.6rem);line-height:1.08;letter-spacing:-.01em;max-width:14ch}
+.hero p{margin-top:28px;font-size:1.02rem;color:var(--ink-soft);max-width:58ch}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px;max-width:760px}
+.hero-meta div{flex:1 1 150px;padding:16px 20px;background:var(--panel);border-radius:30px 8px 30px 8px}
+.hero-meta div:nth-child(even){border-radius:8px 30px 8px 30px}
+.hero-meta .k{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.04em;color:var(--ink-soft);display:block}
+.hero-meta .v{display:block;margin-top:7px;font-weight:600;font-size:.94rem;line-height:1.3}
+.hero-meta .v.open{color:var(--shout)}
+
+/* inline SVG ornaments */
+.orn{display:inline-block;vertical-align:baseline;color:var(--shout);overflow:visible}
+.arrow{width:1.05em;height:.5em;margin:0 .06em;transform:translateY(-.06em)}
+.spark{width:.5em;height:.5em;margin-left:.04em;transform:translateY(-.5em)}
+.arrow path,.spark path{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.arrow path{stroke-width:5}
+.spark path{stroke-width:4}
+
+/* motion only when allowed */
+@media (prefers-reduced-motion: no-preference){
+  .arrow .shaft{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s .25s ease-out forwards}
+  .arrow .head{opacity:0;animation:fadeIn .25s 1.05s ease-out forwards}
+  .spark{animation:twinkle 3.2s 1.2s ease-in-out infinite;transform-origin:50% 50%}
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes twinkle{
+  0%,100%{transform:translateY(-.5em) rotate(0deg) scale(1)}
+  50%{transform:translateY(-.5em) rotate(18deg) scale(1.18)}
+}
+@media (prefers-reduced-motion: reduce){
+  .blob{animation:none}
+  body,.seg label{transition:none}
+}
+
+/* sober variant: current hero size, no SVG */
+:root[data-variant="sober"] .hero{padding:56px 0 36px;max-width:760px}
+:root[data-variant="sober"] .hero h1{font-size:clamp(1.9rem,4.4vw,2.7rem);line-height:1.3;max-width:19ch;letter-spacing:0}
+:root[data-variant="sober"] .hero p{margin-top:20px}
+:root[data-variant="sober"] .orn{display:none}
+</style>
+</head>
+<body>
+
+<div class="lab-bar mono" role="toolbar" aria-label="Hero lab controls">
+  <span class="tag">lab / hero, not linked from the site</span>
+
+  <fieldset class="group">
+    <legend>variant</legend>
+    <div class="seg">
+      <input type="radio" name="variant" id="v-expressive" value="expressive" checked>
+      <label for="v-expressive">Expressive</label>
+      <input type="radio" name="variant" id="v-sober" value="sober">
+      <label for="v-sober">Sober</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>palette</legend>
+    <div class="seg">
+      <input type="radio" name="palette" id="p-clay" value="clay" checked>
+      <label for="p-clay"><span class="sw" style="background:#c2634a"></span>Clay</label>
+      <input type="radio" name="palette" id="p-ladrillo" value="ladrillo">
+      <label for="p-ladrillo"><span class="sw" style="background:#9c3d2b"></span>Ladrillo</label>
+      <input type="radio" name="palette" id="p-ultramar" value="ultramar">
+      <label for="p-ultramar"><span class="sw" style="background:#2f45d4"></span>Ultramar</label>
+    </div>
+  </fieldset>
+</div>
+
+<div class="shell">
+  <div class="blob" aria-hidden="true"></div>
+
+  <section class="hero">
+    <div class="eyebrow mono">ux engineer, spec to merged code</div>
+    <h1 class="display">Product design that
+      <svg class="orn arrow" viewBox="0 0 120 60" aria-hidden="true" focusable="false">
+        <path class="shaft" pathLength="1" d="M6 36 C 20 8, 34 8, 48 30 S 76 52, 92 28 S 104 26, 108 30"/>
+        <path class="head" d="M92 14 L 110 30 L 90 44"/>
+      </svg>
+      ships as code<svg class="orn spark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M20 3 C 21 14, 26 19, 37 20 C 26 21, 21 26, 20 37 C 19 26, 14 21, 3 20 C 14 19, 19 14, 20 3 Z"/>
+      </svg>.
+    </h1>
+    <p>I design enterprise interfaces and then build them: role architectures, design systems, and specs engineering can trust, plus the coded prototypes that prove they work before a developer picks them up.</p>
+    <div class="hero-meta">
+      <div><span class="k">role</span><span class="v">UX/UI &amp; Product Design</span></div>
+      <div><span class="k">focus</span><span class="v">Design Ops, Design Systems, UX Engineering</span></div>
+      <div><span class="k">stack</span><span class="v">Figma, HTML/CSS, Tailwind</span></div>
+      <div><span class="k">availability</span><span class="v open">Open to new roles</span></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function bind(name) {
+    var inputs = document.querySelectorAll('input[name="' + name + '"]');
+    inputs.forEach(function (input) {
+      input.addEventListener('change', function () {
+        if (input.checked) root.setAttribute('data-' + name, input.value);
+      });
+    });
+  }
+  bind('variant');
+  bind('palette');
+})();
+</script>
+</body>
+</html>
