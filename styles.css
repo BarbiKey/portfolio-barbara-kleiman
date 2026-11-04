@@ -66,9 +66,7 @@ header.nav{
 .nav-name{font-family:'Work Sans',sans-serif;font-weight:600;font-size:1rem}
 .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav-links a{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--ink-soft);transition:color .15s ease}
-.nav-links a:hover{color:var(--ink)}
 .nav-cv{display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:.76rem;background:var(--panel);padding:9px 16px;border-radius:999px;transition:background .15s ease}
-.nav-cv:hover{background:var(--blob)}
 
 .shell{max-width:1120px;margin:0 auto;position:relative;padding:0 max(24px,env(safe-area-inset-left,24px)) 0 max(24px,env(safe-area-inset-right,24px))}
 
@@ -95,14 +93,13 @@ header.nav{
 .side-index .item.active .dot{background:var(--shout);transform:scale(1.333)}
 /* label sits out of flow so it takes no space until shown; opacity + translateX only */
 .side-index .lbl{position:absolute;right:calc(100% + 8px);top:50%;margin-top:-8px;font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:16px;color:var(--ink-soft);white-space:nowrap;opacity:0;transform:translateX(6px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
-.side-index .item:hover .lbl,.side-index .item:focus-visible .lbl{opacity:1;transform:translateX(0)}
+.side-index .item:focus-visible .lbl{opacity:1;transform:translateX(0)}
 .filter-pill{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:16;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:10px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(8px);transition:opacity .2s cubic-bezier(.23,1,.32,1),transform .2s cubic-bezier(.23,1,.32,1),visibility 0s linear .2s}
 .filter-pill.show{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);transition-delay:0s}
 .filter-pill button{all:unset;cursor:pointer;color:var(--blob);font-family:inherit}
 /* all:unset wipes the outline, so the focus ring is restated here (blob on the dark pill) */
 .filter-pill button:focus-visible{outline:2px solid var(--blob);outline-offset:3px;border-radius:2px}
 .tag{cursor:pointer;transition:background .15s ease,color .15s ease}
-.tag:hover{background:var(--shout);color:#fff}
 .tag.tag-active{background:var(--shout);color:#fff}
 .case,.family-card{transition:opacity .2s ease}
 .case.dimmed,.family-card.dimmed{opacity:.28}
@@ -162,7 +159,6 @@ header.nav{
 /* overview grid */
 .overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;position:relative;z-index:1;margin-bottom:12px}
 .overview-card{display:block;border-radius:20px;background:var(--panel);padding:22px;transition:background .15s ease}
-.overview-card:hover{background:var(--blob)}
 .overview-card .oc-name{font-family:'Fraunces',Georgia,serif;font-weight:500;font-variation-settings:'opsz' 72,'SOFT' 60,'WONK' 0;font-size:1.1rem;margin-bottom:8px}
 .overview-card .oc-skill{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--shout);display:block;margin-bottom:10px}
 .overview-card .oc-desc{color:var(--ink-soft);font-size:.86rem;margin:0}
@@ -191,11 +187,21 @@ header.nav{
 .pill a{color:var(--ink)}
 .pill button{all:unset;cursor:pointer;color:var(--ink-soft);font-family:inherit;font-size:.72rem}
 .pill button:focus-visible{outline:2px solid var(--shout);outline-offset:3px;border-radius:2px}
-.pill button:hover{color:var(--ink)}
 footer{padding:26px 0 calc(26px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;font-size:.74rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
 
 @media (max-width:640px){
   .case{flex-direction:column}
   .curve-col{display:none}
   .body::before{border-radius:28px}
+}
+
+/* hover effects only where hover is real; focus-visible states stay outside this block.
+   The color and background-color changes (150 ms, no layout) are an authorized exception to transform/opacity/filter. */
+@media (hover:hover) and (pointer:fine){
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cv:hover{background:var(--blob)}
+  .side-index .item:hover .lbl{opacity:1;transform:translateX(0)}
+  .tag:hover{background:var(--shout);color:#fff}
+  .overview-card:hover{background:var(--blob)}
+  .pill button:hover{color:var(--ink)}
 }
