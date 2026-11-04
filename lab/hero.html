@@ -9,17 +9,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500,0,0&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Palettes. Clay = current site tokens. Ladrillo and Ultramar: bg and accent given,
-   the remaining tokens (ink-soft, line, panel, blob) are derived [EDITABLE]. */
+/* Palettes. Clay = current site tokens. Clay claro: all tokens given except ink-soft,
+   kept equal to Clay [EDITABLE]. Ultramar: bg and accent given, the remaining
+   tokens (ink-soft, line, panel, blob) are derived [EDITABLE]. */
 :root,
 :root[data-palette="clay"]{
   --bg:#f7efe6; --ink:#333333; --ink-soft:#7d7568; --line:#e5d6c6;
   --shout:#c2634a; --panel:#f0e1d1; --blob:#f1c7a8;
   color-scheme:light;
 }
-:root[data-palette="ladrillo"]{
-  --bg:#f2ede4; --ink:#333333; --ink-soft:#75695d; --line:#dccfc0;
-  --shout:#9c3d2b; --panel:#e9dfd0; --blob:#e3b3a3;
+:root[data-palette="clay-claro"]{
+  --bg:#fdfbf8; --ink:#333333; --ink-soft:#7d7568; --line:#ece3d8;
+  --shout:#c2634a; --panel:#f6eee6; --blob:#f5d5bd;
 }
 :root[data-palette="ultramar"]{
   --bg:#f3f1ec; --ink:#333333; --ink-soft:#6b6a75; --line:#dcd8d0;
@@ -134,8 +135,8 @@ h1{margin:0}
     <div class="seg">
       <input type="radio" name="palette" id="p-clay" value="clay" checked>
       <label for="p-clay"><span class="sw" style="background:#c2634a"></span>Clay</label>
-      <input type="radio" name="palette" id="p-ladrillo" value="ladrillo">
-      <label for="p-ladrillo"><span class="sw" style="background:#9c3d2b"></span>Ladrillo</label>
+      <input type="radio" name="palette" id="p-clay-claro" value="clay-claro">
+      <label for="p-clay-claro"><span class="sw" style="background:#c2634a"></span>Clay claro</label>
       <input type="radio" name="palette" id="p-ultramar" value="ultramar">
       <label for="p-ultramar"><span class="sw" style="background:#2f45d4"></span>Ultramar</label>
     </div>
