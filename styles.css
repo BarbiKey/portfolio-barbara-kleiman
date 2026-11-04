@@ -94,8 +94,8 @@ header.nav{
 /* label sits out of flow so it takes no space until shown; opacity + translateX only */
 .side-index .lbl{position:absolute;right:calc(100% + 8px);top:50%;margin-top:-8px;font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:16px;color:var(--ink-soft);white-space:nowrap;opacity:0;transform:translateX(6px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
 .side-index .item:focus-visible .lbl{opacity:1;transform:translateX(0)}
-.filter-pill{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:16;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:10px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(8px);transition:opacity .2s cubic-bezier(.23,1,.32,1),transform .2s cubic-bezier(.23,1,.32,1),visibility 0s linear .2s}
-.filter-pill.show{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);transition-delay:0s}
+.filter-pill{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:16;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:10px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.18);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(8px);transition:opacity .14s cubic-bezier(.23,1,.32,1),transform .14s cubic-bezier(.23,1,.32,1),visibility 0s linear .14s}
+.filter-pill.show{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);transition:opacity .2s cubic-bezier(.23,1,.32,1),transform .2s cubic-bezier(.23,1,.32,1),visibility 0s linear 0s}
 .filter-pill button{all:unset;cursor:pointer;color:var(--blob);font-family:inherit}
 /* all:unset wipes the outline, so the focus ring is restated here (blob on the dark pill) */
 .filter-pill button:focus-visible{outline:2px solid var(--blob);outline-offset:3px;border-radius:2px}
@@ -138,12 +138,13 @@ header.nav{
 .mini-head .plus{position:relative;width:10px;height:10px;flex:none;font-size:0;color:transparent}
 .mini-head .plus::before,.mini-head .plus::after{content:"";position:absolute;background:var(--shout);border-radius:1px}
 .mini-head .plus::before{left:0;right:0;top:4.5px;height:1px}
-.mini-head .plus::after{top:0;bottom:0;left:4.5px;width:1px;transition:transform .2s cubic-bezier(.23,1,.32,1)}
-.mini-head[aria-expanded="true"] .plus::after{transform:scaleY(0)}
+.mini-head .plus::after{top:0;bottom:0;left:4.5px;width:1px;transition:transform .14s cubic-bezier(.23,1,.32,1)}
+.mini-head[aria-expanded="true"] .plus::after{transform:scaleY(0);transition-duration:.2s}
 /* grid 0fr -> 1fr animates to the content's real height (authorized exception to transform/opacity) */
-.mini-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s cubic-bezier(.23,1,.32,1)}
-.mini-body.open{grid-template-rows:1fr}
-.mini-body-inner{min-height:0;overflow:hidden;padding:0 2px;visibility:hidden;transition:visibility 0s linear .25s}
+/* exits are faster than entrances: the base state is the close (180 ms), .open is the open (250 ms) */
+.mini-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .18s cubic-bezier(.23,1,.32,1)}
+.mini-body.open{grid-template-rows:1fr;transition-duration:.25s}
+.mini-body-inner{min-height:0;overflow:hidden;padding:0 2px;visibility:hidden;transition:visibility 0s linear .18s}
 .mini-body.open .mini-body-inner{visibility:visible;transition-delay:0s}
 .mini-body-inner::after{content:"";display:block;height:16px}
 .mini-body-inner p{font-size:.92rem;color:var(--ink-soft);line-height:1.65;max-width:60ch;margin:0}
