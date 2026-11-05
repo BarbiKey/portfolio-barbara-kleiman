@@ -185,7 +185,9 @@ document.querySelectorAll('.tag').forEach(function(t){
 /* shooting star: fires once, the first time the trigger section is 40% in view.
    Never fires under reduced motion. The path is computed from the current viewport so it stays on screen. */
 (function(){
+  var STAR_ENABLED = false; /* hidden for now: visual style is pending, see backlog */
   var STAR_SECTION_ID = 'about'; /* [EDITABLE] section that triggers the star */
+  if (!STAR_ENABLED) return;
   var section = document.getElementById(STAR_SECTION_ID);
   if (!section || !('IntersectionObserver' in window)) return;
   function shoot(){
