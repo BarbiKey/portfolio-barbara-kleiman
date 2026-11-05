@@ -138,13 +138,13 @@ header.nav{
 .mini-head .plus{position:relative;width:10px;height:10px;flex:none;font-size:0;color:transparent}
 .mini-head .plus::before,.mini-head .plus::after{content:"";position:absolute;background:var(--shout);border-radius:1px}
 .mini-head .plus::before{left:0;right:0;top:4.5px;height:1px}
-.mini-head .plus::after{top:0;bottom:0;left:4.5px;width:1px;transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.mini-head[aria-expanded="true"] .plus::after{transform:scaleY(0);transition-duration:.4s}
+.mini-head .plus::after{top:0;bottom:0;left:4.5px;width:1px;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.mini-head[aria-expanded="true"] .plus::after{transform:scaleY(0);transition-duration:.6s}
 /* grid 0fr -> 1fr animates to the content's real height (authorized exception to transform/opacity) */
-/* gradual on purpose, so the eye can follow how far it opens: ease-in-out, 400 ms open, 300 ms close (base state is the close) */
-.mini-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.4,0,.2,1)}
-.mini-body.open{grid-template-rows:1fr;transition-duration:.4s}
-.mini-body-inner{min-height:0;overflow:hidden;padding:0 2px;visibility:hidden;transition:visibility 0s linear .3s}
+/* gradual on purpose, so the eye can follow how far it opens: ease-in-out, 600 ms open, 450 ms close (base state is the close) */
+.mini-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1)}
+.mini-body.open{grid-template-rows:1fr;transition-duration:.6s}
+.mini-body-inner{min-height:0;overflow:hidden;padding:0 2px;visibility:hidden;transition:visibility 0s linear .45s}
 .mini-body.open .mini-body-inner{visibility:visible;transition-delay:0s}
 .mini-body-inner::after{content:"";display:block;height:16px}
 .mini-body-inner p{font-size:.92rem;color:var(--ink-soft);line-height:1.65;max-width:60ch;margin:0}
